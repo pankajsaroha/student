@@ -1,13 +1,20 @@
 package com.sms.student;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class StudentApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(StudentApplication.class, args);
+		System.out.println("This is student application:");
+	}
+	@Bean
+	public ModelMapper modelMapper(){
+		return new ModelMapper();
 	}
 
 }
