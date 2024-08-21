@@ -1,3 +1,4 @@
+/*
 package com.sms.student.Payload;
 
 import jakarta.persistence.*;
@@ -23,3 +24,4 @@ public class StudentDto {
     private String City;
     private String about;
 }
+*/

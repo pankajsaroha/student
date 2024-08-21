@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="users")
+@Table(name="Teachers_Details")
 @NoArgsConstructor
 @Getter
 @Setter
@@ -19,5 +19,6 @@ public class Teacher {
     private String teacherEmail;
     private String specialization;
     private String salary;
+
 
 }

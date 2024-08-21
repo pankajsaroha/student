@@ -1,6 +1,6 @@
 package com.sms.student;
 
-import org.modelmapper.ModelMapper;
+import com.sms.student.Entity.Student;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -11,10 +11,10 @@ public class StudentApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(StudentApplication.class, args);
 		System.out.println("This is student application:");
-	}
-	@Bean
-	public ModelMapper modelMapper(){
-		return new ModelMapper();
+		//Student student=new Student();// alt enter write all setters
+
+
+
 	}
 
 }

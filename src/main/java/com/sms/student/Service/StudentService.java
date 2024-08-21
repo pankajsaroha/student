@@ -1,14 +1,14 @@
 package com.sms.student.Service;
 
-import com.sms.student.Payload.StudentDto;
+import com.sms.student.Entity.Student;
 
 import java.util.List;
 
 public interface StudentService {
-   StudentDto createStudent(StudentDto student);
-   StudentDto updateStudent(StudentDto student,Integer StudentId);
-   StudentDto getStudentById(Integer StudentId);
-   List<StudentDto> getAllStudent();
+   Student createStudent(Student student);
+   Student updateStudent(Student student,Integer studentId);
+   Student getStudentById(Integer studentId);
+   List<Student> getAllStudent();
    void deleteStudent(Integer StudentId);
 
 }

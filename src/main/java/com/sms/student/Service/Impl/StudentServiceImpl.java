@@ -1,10 +1,9 @@
 package com.sms.student.Service.Impl;
 
 import com.sms.student.Entity.Student;
-import com.sms.student.Payload.StudentDto;
+import com.sms.student.Exception.ResourceNotFoundException;
 import com.sms.student.Repositories.StudentRepo;
 import com.sms.student.Service.StudentService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,44 +15,38 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentRepo studentRepo;
 
-    @Autowired
-    private ModelMapper modelMapper;
 
-    // create Student service
     @Override
-    public StudentDto createStudent(StudentDto studentDto) {
-        Student student1 = this.dtoToStudent(studentDto);
-        Student savedStudent=this.studentRepo.save(student1);
-        return this.studentToDto(savedStudent);
+    public Student createStudent(Student student) {
+        Student created = this.studentRepo.save(student);
+        return created;
     }
 
     @Override
-    public StudentDto updateStudent(StudentDto student, Integer StudentId) {
+    public Student updateStudent(Student student, Integer studentId) {
+        Student student1=this.studentRepo.findById(studentId).orElseThrow(()->new ResourceNotFoundException("Student not found with student id:"+studentId));
         return null;
     }
 
     @Override
-    public StudentDto getStudentById(Integer StudentId) {
-        return null;
+    public Student getStudentById(Integer studentId) {
+        Student studentById = this.studentRepo.findById(studentId).orElseThrow(()-> new ResourceNotFoundException("Student not found with student id:"+studentId));
+        return studentById;
     }
+
 
     @Override
-    public List<StudentDto> getAllStudent() {
-        return null;
+    public List<Student> getAllStudent() {
+        List<Student> all = this.studentRepo.findAll();
+       // List<Student> collect = all.stream().map(data -> this.Student(data)).collect(Collectors.toList());
+        return all;
     }
 
+    // delete student service
     @Override
-    public void deleteStudent(Integer StudentId) {
+    public void deleteStudent(Integer studentId) {
 
-    }
-    public Student dtoToStudent(StudentDto studentDto){
-
-        Student student=this.modelMapper.map(studentDto,Student.class);
-        return student;
-    }
-
-    public StudentDto studentToDto(Student student){
-        StudentDto studentDto=this.modelMapper.map(student,StudentDto.class);
-        return studentDto;
+        Student student=this.studentRepo.findById(studentId).orElseThrow(()->new ResourceNotFoundException("Student not found with student id:"+studentId));
+        this.studentRepo.delete(student);
     }
 }
