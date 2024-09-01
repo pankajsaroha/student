@@ -8,7 +8,7 @@ public interface StudentService {
    Student createStudent(Student student);
    Student updateStudent(Student student,Integer studentId);
    Student getStudentById(Integer studentId);
-   List<Student> getAllStudent();
-   void deleteStudent(Integer StudentId);
+   List<Student> getAllStudent(Integer pageNumber,Integer pageSize);
+   void deleteStudent(Integer studentId);
 
 }

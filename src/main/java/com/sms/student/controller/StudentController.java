@@ -23,15 +23,18 @@ public class StudentController {
     }
 
     @GetMapping("/getAllStudent")
-    public ResponseEntity<List<Student>> getAllStudent() {
-        return ResponseEntity.ok(this.studentService.getAllStudent());
+    public ResponseEntity<List<Student>> getAllStudent(
+            @RequestParam(value = "pageNumber", defaultValue = "0",required = false) Integer pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = "5",required = false) Integer pageSize
+
+    ) {
+        return ResponseEntity.ok(this.studentService.getAllStudent(pageNumber,pageSize));
     }
 
     @PutMapping("/{studentId}")
     public ResponseEntity<Student> updateStudent(@RequestBody Student student,@PathVariable("studentId") Integer studentId) {
         Student updatedStudent = this.studentService.updateStudent(student, studentId);
         return ResponseEntity.ok(updatedStudent);
-
     }
 
     // get single student
@@ -47,5 +50,9 @@ public class StudentController {
         this.studentService.deleteStudent(studentId);
         return new ResponseEntity<ApiResponse>(new ApiResponse("Student Deleted successfully",true),HttpStatus.OK);
     }
+   /* @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }*/
 
 }
